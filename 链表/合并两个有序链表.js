@@ -7,7 +7,7 @@ function ListNode(val, next) {
  *  哨兵指针，比大小
  * @param {ListNode} l1 
  * @param {ListNode} l2 
- * @returns 
+ * @returns ListNode
  */
 var mergeTwoLists = (l1, l2) => {
   if (l1 == null) return l2;

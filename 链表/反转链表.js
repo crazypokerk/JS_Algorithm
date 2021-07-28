@@ -2,14 +2,12 @@ function ListNode(val, next) {
   this.val = val == undefined ? 0 : val
   this.next = next == undefined ? 0 : val
 }
-
 /**
  * 思路：
- *  三指针，前、当前、后指针
+ * 三指针，前、当前、后指针
+ * @param {ListNode} head 
+ * @returns ListNode
  */
-
-// @input head
-// @output ListNode
 var reverseListNode = (head) => {
   if (head == null || head.next == null) return head
   let front = null,

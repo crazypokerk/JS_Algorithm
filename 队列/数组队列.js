@@ -36,3 +36,11 @@ class ArrayQueue {
         return true;
     }
 }
+
+var q = new ArrayQueue();
+
+q.enqueue('a');
+q.enqueue('b');
+console.log(q);
+console.log(q.dequeue());
+console.log(q);

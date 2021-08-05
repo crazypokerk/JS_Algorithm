@@ -1,5 +1,5 @@
 /**
- * 
+ * 归并排序
  * @param {Array} array 
  * @returns Array
  */
@@ -32,3 +32,34 @@ let Merge = (left, right) => {
 };
 
 console.log(MergeSort([4, 5, 6, 3, 2, 1]));
+
+/**
+ * 快速排序
+ * @param {Array} arr 
+ * @param {number} left 
+ * @param {number} right
+ */
+const QuickSort = (arr, left, right) => {
+    if (left < right) {
+        const pivot = Math.floor(Math.random(10) * right);
+        QuickSort(arr, left, pivot - 1);
+    }
+}
+
+const Partition = (arr, pivot, left, right) => {
+    let i = left;
+    const pVal = arr[pivot];
+    for (let j = left; j < right; j++) {
+        if (arr[j] < pivot) {
+            swap(arr, j, i++);
+        }
+    }
+    swap(arr, i, pVal);
+    return i;
+}
+
+const swap = (arr, a, b) => {
+    let tmp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = tmp;
+}

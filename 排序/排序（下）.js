@@ -42,7 +42,10 @@ console.log(MergeSort([4, 5, 6, 3, 2, 1]));
 const QuickSort = (arr, left, right) => {
     if (left < right) {
         const pivot = Math.floor(Math.random(10) * right);
-        QuickSort(arr, left, pivot - 1);
+        // let pivot = right;
+        let partIndex = Partition(arr, pivot, left, right);
+        QuickSort(arr, left, partIndex - 1 < left ? left : partIndex - 1);
+        QuickSort(arr, partIndex + 1 > right ? right : partIndex + 1, right);
     }
 }
 
@@ -54,7 +57,7 @@ const Partition = (arr, pivot, left, right) => {
             swap(arr, j, i++);
         }
     }
-    swap(arr, i, pVal);
+    swap(arr, i, pivot);
     return i;
 }
 
@@ -63,3 +66,7 @@ const swap = (arr, a, b) => {
     arr[a] = arr[b];
     arr[b] = tmp;
 }
+
+let aa = [5, 7, 3, 2, 9, 10, 4]
+QuickSort(aa, 0, a.length - 1);
+console.log(aa);

@@ -41,26 +41,41 @@ console.log(MergeSort([4, 5, 6, 3, 2, 1]));
  */
 const QuickSort = (arr, left, right) => {
     if (left < right) {
-        const pivot = Math.floor(Math.random(10) * right);
-        // let pivot = right;
+        // let pivot = Math.floor(Math.random(10) * right);
+        let pivot = right;
         let partIndex = Partition(arr, pivot, left, right);
-        QuickSort(arr, left, partIndex - 1 < left ? left : partIndex - 1);
-        QuickSort(arr, partIndex + 1 > right ? right : partIndex + 1, right);
+        // 这里判断 partIndex - 1 目的是为了确认当前 partIndex 指向是否还剩两个或一个元素
+        // pivot 左边的所有元素都小于它，右边的元素都大于它
+        QuickSort(arr, left, partIndex - 1 < left ? left : partIndex - 1);    // 左区排序
+        QuickSort(arr, partIndex + 1 > right ? right : partIndex + 1, right); // 右区排序
     }
 }
-
+/**
+ * 分区函数
+ * @param {Array} arr 
+ * @param {number} pivot 
+ * @param {number} left
+ * @param {number} right
+ * @returns 
+ */
 const Partition = (arr, pivot, left, right) => {
+    // i 是哨兵指针，j 来遍历
     let i = left;
     const pVal = arr[pivot];
     for (let j = left; j < right; j++) {
-        if (arr[j] < pivot) {
+        if (arr[j] < pVal) {
             swap(arr, j, i++);
         }
     }
     swap(arr, i, pivot);
     return i;
 }
-
+/**
+ * 交换 pivot 指针值和 i 哨兵指针值
+ * @param {Array} arr 
+ * @param {number} a 
+ * @param {number} b 
+ */
 const swap = (arr, a, b) => {
     let tmp = arr[a];
     arr[a] = arr[b];
@@ -68,5 +83,5 @@ const swap = (arr, a, b) => {
 }
 
 let aa = [5, 7, 3, 2, 9, 10, 4]
-QuickSort(aa, 0, a.length - 1);
+QuickSort(aa, 0, aa.length - 1);
 console.log(aa);

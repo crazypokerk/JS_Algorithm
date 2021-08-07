@@ -33,6 +33,7 @@ let Merge = (left, right) => {
 
 console.log(MergeSort([4, 5, 6, 3, 2, 1]));
 
+//---------------------------------------------------------------------------
 /**
  * 快速排序
  * @param {Array} arr 
@@ -41,7 +42,14 @@ console.log(MergeSort([4, 5, 6, 3, 2, 1]));
  */
 const QuickSort = (arr, left, right) => {
     if (left < right) {
-        // let pivot = Math.floor(Math.random(10) * right);
+        // 这里有问题的原因在于，在比较右区的时候，随机数生成的 pivot 不在右区区间内，比如右区区间为 [3,6],而随机数生成的范围为[0,6]
+        // let pivot = Math.floor(Math.random(1) * right);
+        // let pivot;
+        // do {
+        //     pivot = Math.floor(Math.random() * right);
+        // } while (pivot < left);
+        // let pivot = Math.min(Math.max(left, Math.floor((left + right) / 2)), right);
+        // 突然发现，这个算法只适用于 pivot 选择为 right 时，排序正确，除此之外选择其他的 pivot 都是错误的。
         let pivot = right;
         let partIndex = Partition(arr, pivot, left, right);
         // 这里判断 partIndex - 1 目的是为了确认当前 partIndex 指向是否还剩两个或一个元素
@@ -82,6 +90,46 @@ const swap = (arr, a, b) => {
     arr[b] = tmp;
 }
 
-let aa = [5, 7, 3, 2, 9, 10, 4]
+let aa = [6, 8, 7, 5, 4]
 QuickSort(aa, 0, aa.length - 1);
 console.log(aa);
+
+// ---------------------------------------------------------
+/**
+ * 优化后的快排
+ * @param {Array} arr 
+ * @param {number} left 
+ * @param {number} right 
+ */
+const QuickSort__ = (arr, left, right) => {
+    if (left < right) {
+        let pivot = partition(arr, left, right);
+        QuickSort__(arr, left, pivot - 1);
+        QuickSort__(arr, pivot + 1, right);
+    }
+}
+const partition = (arr, left, right) => {
+    // random 随机生成 0~1 的随机数，right - left + 表示生成随机数的右闭区间， + left 为左闭区间
+    // 即生成的随机数区间为： [left, left + (right - left + 1)]
+    let pivot = Math.floor(Math.random() % (right - left + 1) + left);
+    (function (arr, a, b) {
+        let tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
+    }(arr, pivot, left));
+
+    let pivotVal = arr[pivot];
+
+    while (left < right) {
+        while (arr[right] >= pivotVal && left < right) right--;
+        arr[left] = arr[right];
+
+        while (arr[left] <= pivotVal && left < right) left++;
+        arr[right] = arr[left];
+    }
+    arr[right] = pivotVal;
+    return right;
+}
+let bb = [6, 8, 7, 5, 4]
+QuickSort__(bb, 0, bb.length - 1);
+console.log(bb);

@@ -63,11 +63,17 @@ var root = new TreeNode(1, a, b);
 /**
  * 迭代——二叉树的前、中、后序遍历
  */
+/**
+ * 二叉树的前序遍历，借助栈
+ * @param {TreeNode} root 
+ * @returns 
+ */
 const preorder = root => {
     if (root == null) return root;
     let tmpStack = [], preRes = [];
     tmpStack.push(root);
     // 这里有一个疑问，在 Java 中可以对对象之间进行 == null 来判断比如Stack\ArrayList 是否为空
+    // 明白了，因为数组本身也是对象，数组中没有元素但并不代表数组对象指向了 null
     // 但在 JavaScript 中 array == null，当 array 没有元素时上面语句输出为 false
     // array === null 结果也为 false
     // == 等同于 undefined
@@ -82,6 +88,25 @@ const preorder = root => {
 
 console.log(preorder(root));
 
+/**
+ * 二叉树中序遍历，借助指针 cur 和栈
+ * @param {TreeNode} root 
+ * @returns 
+ */
 const inorder = root => {
-
+    if (root == null) return root;
+    let tmpStack = [], inRes = [], cur = root;
+    while (tmpStack.length != 0 || cur) {
+        if (cur) {
+            tmpStack.push(cur);
+            cur = cur.left;
+        } else {
+            cur = tmpStack.pop();
+            inRes.push(cur.val);
+            cur = cur.right;
+        }
+    }
+    return inRes;
 }
+
+console.log(inorder(root));

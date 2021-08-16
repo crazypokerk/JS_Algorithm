@@ -49,9 +49,17 @@ var f = new TreeNode(7, null, null);
 var e = new TreeNode(6, null, null)
 var d = new TreeNode(5, f, null);
 var c = new TreeNode(4, null, null);
-var b = new TreeNode(3, e, null);
+var b = new TreeNode(3, null, e);
 var a = new TreeNode(2, c, d)
 var root = new TreeNode(1, a, b);
+
+//           root1
+//          /    \
+//         a2     b3
+//        / \      \
+//      c4   d5    e6
+//          /
+//         f7
 
 // preorderTraversal(root);
 // console.log(preResult);
@@ -69,8 +77,8 @@ var root = new TreeNode(1, a, b);
  * @returns 
  */
 const preorder = root => {
-    if (root == null) return root;
     let tmpStack = [], preRes = [];
+    if (root == null) return preRes;
     tmpStack.push(root);
     // 这里有一个疑问，在 Java 中可以对对象之间进行 == null 来判断比如Stack\ArrayList 是否为空
     // 明白了，因为数组本身也是对象，数组中没有元素但并不代表数组对象指向了 null
@@ -94,8 +102,8 @@ console.log(preorder(root));
  * @returns 
  */
 const inorder = root => {
-    if (root == null) return root;
     let tmpStack = [], inRes = [], cur = root;
+    if (root == null) return inRes;
     while (tmpStack.length != 0 || cur) {
         if (cur) {
             tmpStack.push(cur);
@@ -110,3 +118,35 @@ const inorder = root => {
 }
 
 console.log(inorder(root));
+
+const postorder = root => {
+    // pre 跟屁虫指针
+    let tmpStack = [], postRes = [], pre = null;
+    if (root == null) return postRes;
+    while (tmpStack.length != 0 || root) {
+        // 第一个 while 目的是为了将所有左子节点放入临时栈
+        while (root) {
+            tmpStack.push(root);
+            root = root.left;
+        }
+        // 因为后序遍历的顺序是 左右根，所以弹出最后放入的子节点
+        // 如果当前节点没有右子节点或者跟屁虫指针指向当前节点的右子节点
+        // 就表示当前节点root指针之前已经“经过”过，也就是表示跟屁虫指针指向的就是
+        // 当前节点下一级的根节点，因为根节点是最后一个放入，那么直接放入即可
+
+        // 否则说明当前节点的右子节点不为空或者还没有遍历过
+        // 那么就继续遍历右子节点
+        root = tmpStack.pop();
+        if (!root.right || root.right == pre) {
+            postRes.push(root.val);
+            pre = root;
+            root = null;
+        } else {
+            tmpStack.push(root);
+            root = root.right;
+        }
+    }
+    return postRes;
+}
+
+console.log(postorder(root));

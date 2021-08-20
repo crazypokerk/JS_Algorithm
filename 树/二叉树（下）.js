@@ -128,19 +128,11 @@ const BST_search_max_data = root => {
 }
 // console.log(BST_search_max_data(root));
 
-var min;
+var res = [];
 const BST_search_min_data = root => {
-    if (!root) return;
-    min = root.val;
+    if (!root) return res[0];
     if (root.left) BST_search_min_data(root.left);
+    res.push(root.val);
     if (root.right) BST_search_min_data(root.right);
 }
 console.log(BST_search_min_data(root));
-
-const BST_search_front_data = root => {
-
-}
-
-const BST_search_next_data = root => {
-
-}

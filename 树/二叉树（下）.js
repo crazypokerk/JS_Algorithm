@@ -102,17 +102,40 @@ const BST_delete = (delData, root) => {
     else prev.right = child;
 }
 var root = initTree();
-console.log(root);
-BST_delete(16, root);
-console.log(root);
-
+// console.log(root);
+// BST_delete(16, root);
+// console.log(root);
+/**
+ * 
+ * @param {TreeNode} root 
+ * @returns 
+ */
 const BST_search_max_data = root => {
-
+    if (!root) return -1;
+    // 中序遍历
+    let tmpStack = [], inorder = [], cur = root;
+    while (cur || tmpStack.length != 0) {
+        if (cur) {
+            tmpStack.push(cur);
+            cur = cur.left;
+        } else {
+            cur = tmpStack.pop();
+            inorder.push(cur.val);
+            cur = cur.right;
+        }
+    }
+    return inorder[inorder.length - 1];
 }
+// console.log(BST_search_max_data(root));
 
+var min;
 const BST_search_min_data = root => {
-
+    if (!root) return;
+    min = root.val;
+    if (root.left) BST_search_min_data(root.left);
+    if (root.right) BST_search_min_data(root.right);
 }
+console.log(BST_search_min_data(root));
 
 const BST_search_front_data = root => {
 

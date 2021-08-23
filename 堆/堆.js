@@ -1,17 +1,20 @@
 class Heap {
-    constructor(capacity) {
-        this.h = new Array[capacity + 1];
-        this.max_n = h.length;
+    constructor() {
+        this.h = new Array();
+        this.max_n = this.h.length;
         this.count = 0;
     }
 
     insert(val) {
-        if (this.count >= this.max_n) return;
-        h[++this.count] = val;
-        let i = this.count;
-        while (i / 2 > 0 && h[i] > h[i / 2]) {
-            this.swap(h, i, i / 2);
-            i = i / 2;
+        if (this.max_n == 0) {
+            this.h[count++] = val;
+        } else {
+            this.h[++this.count] = val;
+            let i = this.count;
+            while (i / 2 > 0 && this.h[i] > this.h[i / 2]) {
+                this.swap(this.h, i, i / 2);
+                i = i / 2;
+            }
         }
     }
 

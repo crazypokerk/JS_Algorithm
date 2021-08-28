@@ -1,4 +1,4 @@
-import Graph from 'BFS&DFS/Graph';
+// import Graph from 'BFS&DFS/Graph';
 /**
  * 
  *    0 —— 1 —— 2
@@ -25,25 +25,48 @@ const BFS = (start, end, graph) => {
         visited[i] = -1;
         prevvertices[i] = -1;
     }
-    queue.push(s);
+    queue.push(start);
     while (queue.length != 0) {
         let num = queue.shift();     // LinkedList
+        // let lists = graph.adjacencyLists[num];
         // 开始遍历链表
-        for (let i = 0; i < num.size; i++) {
-            let node = num.takeFirst(i);     // ListNode
-            if (visited[node.data] == -1) {
-                prevvertices[node.data] = i;
-                if (node.data == t) {
-                    print();
+        let lists = graph.adjacencyLists[num];
+        const size = lists.size;
+        for (let i = 0; i < size; i++) {
+            let node = lists.takeFirst();     // ListNode
+            if (visited[node.data] === -1) {
+                prevvertices[node.data] = num;
+                if (node.data === end) {
+                    print(prevvertices, start, end);
                     return;
                 }
                 visited[node.data] = 0;
-                queue.push(node);
+                queue.push(node.data);
             }
         }
     }
 }
 
-const print = () => { }
+const print = (prev, s, t) => {
+    if (prev[t] != -1 && t != s) {
+        print(prev, s, prev[t]);
+    }
+    console.log(`--> ${t}`);
+}
 
 var g = new Graph(8);
+g.addEdge(0, 1);
+g.addEdge(0, 3);
+g.addEdge(1, 2);
+g.addEdge(1, 4);
+g.addEdge(3, 4);
+g.addEdge(4, 5);
+g.addEdge(4, 6);
+g.addEdge(2, 5);
+g.addEdge(5, 7);
+g.addEdge(6, 7);
+BFS(0, 6, g);
+//console.log(g);
+// for (let val of g.adjacencyLists) {
+//     console.log(val);
+// }

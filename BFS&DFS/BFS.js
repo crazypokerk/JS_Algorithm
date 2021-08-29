@@ -10,6 +10,7 @@
  * 广度优先搜索
  * @param {*} start 
  * @param {*} end 
+ * @param {Array} graph
  */
 const BFS = (start, end, graph) => {
     // 1、输入起始节点和结束节点
@@ -33,6 +34,7 @@ const BFS = (start, end, graph) => {
         let lists = graph.adjacencyLists[num];
         const size = lists.size;
         for (let i = 0; i < size; i++) {
+            // 此处使用了队列，先进先出
             let node = lists.takeFirst();     // ListNode
             if (visited[node.data] === -1) {
                 prevvertices[node.data] = num;

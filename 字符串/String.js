@@ -15,8 +15,6 @@ const badString = (modelStr) => {
     }
     return index;
 }
-var ind = modelString('abd');
-console.log(ind);
 
 const BoverMoore = () => {
 

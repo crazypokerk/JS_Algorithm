@@ -35,3 +35,19 @@ console.log(null > 0);  // false
 if (val) { }   // 不为空执行
 if (!val) { }  // 为空执行
 // 判空和判不空
+
+// forEach(); 无法使用 return 语句和 break 语句终止循环
+// 想要终止循环只能使用 try catch 捕获异常终止 forEach
+try {
+    [...string].forEach(i => {
+        throw new Error('');
+    });
+} catch (error) {
+    return false;
+}
+
+// 字符串无法直接操作更改
+// 错误做法：
+let str = 'abcde';
+str[3] = 'x';
+// Uncaught ReferenceError: Invalid left-hand side in assignment

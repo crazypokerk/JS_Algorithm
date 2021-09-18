@@ -58,3 +58,11 @@ str[3] = 'x';
 const arr = arr.map(item => {
     return item * 2;
 });
+
+// 写交换数组元素的的外部函数，要传入交换的数组，不然怎么交换元素？这种问题有点儿弱智了，竟然还会出现o(╥﹏╥)o
+const swap = (a, b) => {
+    let tmp = a;
+    a = b;
+    b = tmp;
+}
+// 以上写法不会交换数组元素 (!!!)

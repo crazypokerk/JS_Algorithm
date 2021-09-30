@@ -19,4 +19,6 @@ JavaScript：[现代JS](https://zh.javascript.info/)
 
 一位国外小姐姐的技术博客：[干货满满](https://www.samanthaming.com/)
 
+TypeScript入门：[TypeScript](https://ts.xcatliu.com/)
+
 ...

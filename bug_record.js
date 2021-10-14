@@ -66,3 +66,6 @@ const swap = (a, b) => {
     b = tmp;
 }
 // 以上写法不会交换数组元素 (!!!)
+
+// 警惕数组越界后值的读取，会报：
+//  Uncaught TypeError: Cannot read properties of undefined (reading 'x')

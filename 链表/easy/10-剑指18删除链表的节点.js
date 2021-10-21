@@ -1,0 +1,17 @@
+/**
+ * 剑指Offer18
+ * @param {ListNode} head
+ * @param {number} val
+ * @return {ListNode}
+ */
+var deleteNode = function (head, val) {
+    if (!head) return head;
+    let pre = new ListNode(-1);
+    pre.next = head;
+    let cur = pre;
+    while (cur?.next) {
+        if (cur.next.val === val) cur.next = cur.next.next;
+        cur = cur.next;
+    }
+    return pre.next;
+};

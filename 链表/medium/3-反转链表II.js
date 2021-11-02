@@ -30,3 +30,18 @@ var reverseBetween = function (head, left, right) {
     l.next = r;
     return tmp.next;
 };
+// 头插法
+var reverseBetween1 = function (head, left, right) {
+    const tmp = new ListNode(-1);
+    tmp.next = head;
+    let pre = tmp;
+    for (let i = 0; i < left - 1; i++) pre = pre.next;
+    let cur = pre.next;
+    for (let i = 0; i < right - left; i++) {
+        let next = cur.next;
+        cur.next = next.next;
+        next.next = pre.next;
+        pre.next = next;
+    }
+    return tmp.next;
+}

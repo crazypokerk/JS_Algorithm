@@ -21,4 +21,6 @@ JavaScript：[现代JS](https://zh.javascript.info/)
 
 TypeScript入门：[TypeScript](https://ts.xcatliu.com/)
 
+无限设计：[丰富的设计资源](https://www.seeseed.com/)
+
 ...

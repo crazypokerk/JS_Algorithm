@@ -23,4 +23,5 @@ TypeScript入门：[TypeScript](https://ts.xcatliu.com/)
 
 无限设计：[丰富的设计资源](https://www.seeseed.com/)
 
+Unicode：[超级全面的Unicode查询](https://www.compart.com/en/unicode/U+2713)
 ...

@@ -28,5 +28,7 @@ Unicode：[超级全面的Unicode查询](https://www.compart.com/en/unicode/U+27
 CSS在线样式设计：[one](https://neumorphism.io/#4f4fa1)
                 [two](https://uigradients.com/#SublimeLight)
                 [three](https://codepen.io/FelipeMarcos/pen/tfhEg)
+               
+指令查询：[cmd, linux...](https://ss64.com/)
 
 ...

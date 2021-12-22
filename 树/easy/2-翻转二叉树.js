@@ -12,3 +12,17 @@ var invertTree = function (root) {
     invertTree(root.right);
     return root;
 };
+var invertTreeBFS = root => {
+    if (!root) return null;
+    const queue = [];
+    queue.push(root);
+    while (queue.length != 0) {
+        let cur = queue.shift();
+        let tmp = cur.left;
+        cur.left = cur.right;
+        cur.right = tmp;
+        if (cur.left) queue.push(cur.left);
+        if (cur.right) queue.push(cur.right);
+    }
+    return root;
+}

@@ -21,3 +21,20 @@ root.left = new TreeNode(2,
         new TreeNode(6, null, null)));
 root.right = new TreeNode(3, null, null);
 console.log(maxDepth(root));
+
+var maxDepthBFS = root => {
+    if (!root) return 0;
+    const queue = [];
+    let max = 0;
+    queue.push(root);
+    while (queue.length != 0) {
+        let s = queue.length;
+        for (let i = 0; i < s; i++) {
+            let cur = queue.shift();
+            if (cur.left) queue.push(cur.left);
+            if (cur.right) queue.push(cur.right);
+        }
+        max++;
+    }
+    return max;
+}

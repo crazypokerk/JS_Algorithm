@@ -3,7 +3,7 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var sumOfLeftLeaves = function (root) {
+var sumOfLeftLeavesBFS = function (root) {
     if (!root) return 0;
     const queue = [];
     queue.push(root);
@@ -26,6 +26,15 @@ var sumOfLeftLeaves = function (root) {
     }
     return leftSum;
 };
+var sumOfLeftLeavesDFS = root => {
+    let dfs = root => {
+        let leftSum = 0;
+        if (root.left) leftSum += isLeaf(root.left) ? root.left.val : dfs(root.left);
+        if (root.right && !isLeaf(root.right)) leftSum += dfs(root.right);
+        return leftSum;
+    }
+    return root ? dfs(root) : 0;
+}
 var isLeaf = node => {
     return node.left === null && node.right === null;
 }

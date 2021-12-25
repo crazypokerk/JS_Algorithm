@@ -69,3 +69,9 @@ const swap = (a, b) => {
 
 // 警惕数组越界后值的读取，会报：
 //  Uncaught TypeError: Cannot read properties of undefined (reading 'x')
+
+// 双感叹号
+!!1 // true
+!!0 // false
+!!'' // false
+!!undefined // false

@@ -75,3 +75,11 @@ const swap = (a, b) => {
 !!0 // false
 !!'' // false
 !!undefined // false
+
+// 创建二维数组
+// 此方法在循环或更改数组元素时，会“一列”性的进行更改
+// 原因参照：https://blog.csdn.net/asd0356/article/details/113403202
+const dp = new Array(3).fill(new Array(3).fill(0));
+const dp = Array(3).fill(Array.fill(0)); // 此方法等同上方法
+// 以下式则不会有以上问题
+const dp = Array(3).fill(0).map(() => Array(3).fill(0));

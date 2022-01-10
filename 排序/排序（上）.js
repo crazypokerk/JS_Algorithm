@@ -23,8 +23,62 @@ let BubbleSort = (array) => {
     return array;
 }
 
+var bubbleSort_update = array => {
+    let swapped = true;
+    let lastSwapIndex = -1;
+    const len = array.length;
+    while (swapped) {
+        swapped = false;
+        for (let i = 0; i < len - 1; i++) {
+            if (array[i] > array[i + 1]) {
+                swap(array, i, i + 1);
+                swapped = true;
+                lastSwapIndex = i;
+            }
+        }
+    }
+    return array;
+}
+var swap = (arr, i, j) => {
+    arr[i] = arr[i] + arr[j];
+    arr[j] = arr[i] - arr[j];
+    arr[i] = arr[i] - arr[j];
+}
+
 var a = BubbleSort([3, 5, 6, 2, 4, 1, 9, 0]);
 console.log(a);
+
+var minNumber = function (nums) {
+    let len = nums.length;
+    let swapped = true;
+    let i = 0;
+    while (swapped) {
+        swapped = false;
+        for (let j = 0; j < len - 1 - i; j++) {
+            if (compare(nums[j], nums[j + 1])) {
+                swap(nums, j, j + 1);
+                swapped = true;
+            }
+        }
+        i++;
+    }
+    let result = '';
+    for (const s of nums) {
+        result += s;
+    }
+    return result;
+};
+var compare = (n1, n2) => {
+    let s1 = "" + n1 + n2;
+    let s2 = "" + n2 + n1;
+    if (Number.parseInt(s1) > Number.parseInt(s2)) return true;
+    else return false;
+}
+var swap = (arr, i, j) => {
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+}
+
+minNumber([3, 30, 34, 5, 9]);
 
 /**
  * 插入排序

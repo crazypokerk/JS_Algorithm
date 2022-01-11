@@ -103,28 +103,6 @@ let InsertSort = (array) => {
 var b = InsertSort([4, 5, 6, 3, 2, 1]);
 console.log(b);
 
-let insertSortII = nums => {
-    let len = nums.length;
-    let minIndex, maxIndex;
-    let swap = (nums, i, j) => { [nums[i], nums[j]] = [nums[j], nums[i]]; }
-    for (let i = 0; i < Math.floor(len / 2); i++) {
-        minIndex = i;
-        maxIndex = i;
-        for (let j = i + 1; j < len - i; j++) {
-            if (nums[j] > nums[maxIndex]) maxIndex = j;
-            if (nums[j] < nums[minIndex]) minIndex = j;
-        }
-        if (minIndex == maxIndex) break;
-        swap(nums, minIndex, i);
-        // 如果最大值的下标刚好是 i，由于 nums[i] 和 nums[minIndex] 已经交换了，所以这里要更新 maxIndex 的值。
-        if (maxIndex == i) maxIndex = minIndex;
-        let lastIndex = len - 1 - i;
-        swap(nums, maxIndex, lastIndex);
-    }
-    return nums;
-}
-console.log(insertSortII([3, 6, 1, 2, 5, 4]));
-
 /**
  * 选择排序
  *  [已排序区间]，[未排序区间]
@@ -149,3 +127,25 @@ let SelectSort = (array) => {
 }
 var c = SelectSort([4, 5, 6, 3, 2, 1]);
 console.log(b);
+
+let selectSortII = nums => {
+    let len = nums.length;
+    let minIndex, maxIndex;
+    let swap = (nums, i, j) => { [nums[i], nums[j]] = [nums[j], nums[i]]; }
+    for (let i = 0; i < Math.floor(len / 2); i++) {
+        minIndex = i;
+        maxIndex = i;
+        for (let j = i + 1; j < len - i; j++) {
+            if (nums[j] > nums[maxIndex]) maxIndex = j;
+            if (nums[j] < nums[minIndex]) minIndex = j;
+        }
+        if (minIndex == maxIndex) break;
+        swap(nums, minIndex, i);
+        // 如果最大值的下标刚好是 i，由于 nums[i] 和 nums[minIndex] 已经交换了，所以这里要更新 maxIndex 的值。
+        if (maxIndex == i) maxIndex = minIndex;
+        let lastIndex = len - 1 - i;
+        swap(nums, maxIndex, lastIndex);
+    }
+    return nums;
+}
+console.log(selectSortII([3, 6, 1, 2, 5, 4]));

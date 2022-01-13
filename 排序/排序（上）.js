@@ -90,18 +90,27 @@ minNumber([3, 30, 34, 5, 9]);
 let InsertSort = (array) => {
     if (array.length <= 1) return array;
     for (let i = 1; i < array.length; i++) {
-        let tmp = array[i];
-        let j = i - 1;
-        for (; j >= 0; j--) {
-            if (array[j] > tmp) array[j + 1] = array[j];
-            else break;
+        for (let j = i; j > 0; j--) {
+            if (array[j] < array[j - 1]) swap(array, j, j - 1);
         }
-        array[j + 1] = tmp;
     }
     return array;
 }
 var b = InsertSort([4, 5, 6, 3, 2, 1]);
 console.log(b);
+var insertSortII = nums => {
+    let len = nums.length;
+    for (let i = 1; i < len; i++) {
+        let curNum = nums[i];
+        let j = i - 1;
+        for (; j >= 0 && curNum < nums[j]; j--) {
+            nums[j + 1] = nums[j];
+        }
+        nums[j + 1] = curNum;
+    }
+    return nums;
+}
+console.log('-----', insertSortII([4, 2, 1, 6, 5, 3]));
 
 /**
  * 选择排序

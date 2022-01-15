@@ -4,7 +4,7 @@
  * @param {string} word2
  * @return {number}
  */
-var minDistance = function (word1, word2) {
+var minDistanceII = function (word1, word2) {
     const l1 = word1.length, l2 = word2.length;
     const arrW1 = [...word1], arrW2 = [...word2];
     const dp = Array(l1 + 1).fill(0).map(() => Array(l2 + 1).fill(0));

@@ -4,11 +4,6 @@
  * @param {number[]} postorder
  * @return {TreeNode}
  */
-function TreeNode(val, left, right) {
-    this.val = (val === undefined ? 0 : val)
-    this.left = (left === undefined ? null : left)
-    this.right = (right === undefined ? null : right)
-}
 var buildTree = function (inorder, postorder) {
     if (postorder.length == 0) return null;
     let rootVal = postorder[postorder.length - 1];
